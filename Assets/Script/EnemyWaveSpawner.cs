@@ -57,10 +57,15 @@ public class EnemyWaveSpawner : MonoBehaviour
         } while (endless);
 
        
+        yield return new WaitUntil(() => activeEnemyCount <= 0); GameManager.Instance.InvokePlayerWin();
     }
 
     private IEnumerator SpawnWave(Wave wave)
     {
+            
+        if (wave.prefabGO.Count == 0) yield break;
+        
+
         int extraEnemies = (endless) ? endlessCount : 0;
 
         int totalToSpawn = wave.prefabGO.Count + extraEnemies;
@@ -89,7 +94,7 @@ public class EnemyWaveSpawner : MonoBehaviour
 
         
         EnemyHealth health = go.GetComponent<EnemyHealth>();
-        health.OnDeath += () => activeEnemyCount--;
+        health.OnRemove += () => activeEnemyCount--;
     }
 
     private Vector3 GetSpawnPoint()

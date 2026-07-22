@@ -5,6 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public float currenthealth;
     public float maxHealth;
+    public bool  IsDead;
 
     public event Action<float, float> OnHealthUpdate; // min , max
    
@@ -18,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(float amount)
     {
+        if (IsDead) return;
         currenthealth -= amount;
         OnHealthUpdate?.Invoke(currenthealth, maxHealth);
 

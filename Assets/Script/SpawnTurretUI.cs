@@ -41,6 +41,7 @@ public class SpawnTurretUI : MonoBehaviour
         if (CurrentSelectedCard == clicked)
         {
             CurrentSelectedCard = null;
+            OnTurretSelected?.Invoke(null);
             return;
         }
 

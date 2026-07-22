@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public event Action<float,float> OnHealthUpdate; // min , max
 
     public event Action OnDeath;
+    public event Action OnRemove;
 
     private void OnEnable()
     {
@@ -22,12 +23,13 @@ public class EnemyHealth : MonoBehaviour
         OnDeath -= Death;
     }
 
-    private void Start()
-    {
-        currenthealth = data.maxHealth;
-    }
+        
+    private void Start() => currenthealth = data.maxHealth;
 
-    
+
+
+
+
     public void UpdateHealth()
     {
         
@@ -47,8 +49,14 @@ public class EnemyHealth : MonoBehaviour
     {
         GameManager.Instance.AddGold(data.goldReward);
         gameObject.SetActive(false);
+        OnRemove?.Invoke();
     }
-    
+
+    public void ReachedEnd()
+    {
+        gameObject.SetActive(false);
+        OnRemove?.Invoke();
+    }    
    
 
 }

@@ -25,8 +25,7 @@ public class TurretController : MonoBehaviour
 
     private void Start()
     {
-        data.bulletPrefab = BulletPrefab;
-        BulletPrefab.damage = data.damage;
+       
         leveler = GetComponent<TurretLeveler>();
     }
 
@@ -45,8 +44,10 @@ public class TurretController : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= runtimeData.attackSpeed)
             {
-                Bullet bulletSpawn = Instantiate(data.bulletPrefab,firingPoint.position,transform.rotation);
+                Bullet bulletSpawn = Instantiate(BulletPrefab,firingPoint.position,transform.rotation);
                 bulletSpawn.direction = direction;
+                bulletSpawn.damage = runtimeData.damage;
+                
                 bulletSpawn.OnHit += leveler.GainExpFlateRate;
                  timer = 0;
             }
@@ -67,7 +68,7 @@ public class TurretController : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
-            Quaternion rotation = Quaternion.Slerp(firingPoint.rotation, Quaternion.AngleAxis(angle, Vector3.forward), data.RotationSpeed);
+            Quaternion rotation = Quaternion.Slerp(firingPoint.rotation, Quaternion.AngleAxis(angle, Vector3.forward), data.RotationSpeed * Time.deltaTime);
 
             firingPoint.rotation = rotation;
         }

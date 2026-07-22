@@ -10,7 +10,6 @@ public class TurretData : ScriptableObject
     public float attackSpeed = 1;
     [Range(0,1)]
     public float RotationSpeed = 1;
-    public Bullet bulletPrefab;
     public GameObject turret;
     [Space]
     public int Cost = 80;

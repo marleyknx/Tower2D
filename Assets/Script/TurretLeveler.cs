@@ -34,7 +34,7 @@ public class TurretLeveler : MonoBehaviour
                         break;
 
                     case StatType.attackSpeed:
-                        data.attackSpeed -= upgrade.amount;
+                        data.attackSpeed = Mathf.Max(0.05f, data.attackSpeed - upgrade.amount);
                         break;
                 }
             }

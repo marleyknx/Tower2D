@@ -31,7 +31,7 @@ public class EnemiePatrol : MonoBehaviour
                 PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
                 playerHealth.takeDamage(enemyData.damage);
                 //destroy
-                gameObject.SetActive(false);
+                GetComponent<EnemyHealth>().ReachedEnd();
                 return;
             }
             currentTarget = patrolPoints.Points[targetIndex].position;

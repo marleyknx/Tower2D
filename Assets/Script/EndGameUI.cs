@@ -3,7 +3,7 @@ using UnityEngine;
 public class EndGameUI : MonoBehaviour
 {
     [SerializeField] GameObject WinPanel, LosePanel;
-    private bool win, lose;
+    
 
 
     private void Awake()
@@ -26,13 +26,13 @@ public class EndGameUI : MonoBehaviour
 
     void OpenWinPanel()
     {
-        win = !win;
-       WinPanel.SetActive(win);
+        
+       WinPanel.SetActive(true);
     }
 
     void OpenLosePanel()
     {
-        lose = !lose;
-        LosePanel.SetActive(lose);
+        
+        LosePanel.SetActive(true);
     }
 }
