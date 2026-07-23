@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,6 +14,11 @@ public class EnemyHealth : MonoBehaviour
     public event Action OnDeath;
     public event Action OnRemove;
 
+    public Vector3 defaultScale = Vector3.one;
+    Vector3 hitScale = Vector3.one;
+
+    [SerializeField]  Vector3 ScalingSpeed;
+
     private void OnEnable()
     {
         OnDeath += Death;
@@ -23,23 +29,33 @@ public class EnemyHealth : MonoBehaviour
         OnDeath -= Death;
     }
 
-        
-    private void Start() => currenthealth = data.maxHealth;
 
-
-
-
-
-    public void UpdateHealth()
+    private void Start()
     {
-        
+        defaultScale = transform.localScale;
+        currenthealth = data.maxHealth;
     }
 
+    private void Update()
+    {
+        defaultScale = Vector3.SmoothDamp(defaultScale, hitScale, ref ScalingSpeed, 0.08f);
+        transform.localScale = defaultScale;
+    }
+
+
+    public void VisualHit()
+    {
+        defaultScale = new Vector3(1.2f, .8f, 1.2f);
+
+
+    }
+
+ 
     public void takeDamage(float amount)
     {
         currenthealth -= amount;
         OnHealthUpdate?.Invoke(currenthealth, data.maxHealth);
-
+        VisualHit();
         if(currenthealth <= 0) OnDeath?.Invoke();
     }
 
