@@ -14,10 +14,9 @@ public class EnemyHealth : MonoBehaviour
     public event Action OnDeath;
     public event Action OnRemove;
 
-    public Vector3 defaultScale = Vector3.one;
-    Vector3 hitScale = Vector3.one;
-
-    [SerializeField]  Vector3 ScalingSpeed;
+    public SquashEffect squash;
+   
+  
 
     private void OnEnable()
     {
@@ -32,30 +31,25 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        defaultScale = transform.localScale;
+        squash.Initialize(transform.localScale);
         currenthealth = data.maxHealth;
     }
 
     private void Update()
     {
-        defaultScale = Vector3.SmoothDamp(defaultScale, hitScale, ref ScalingSpeed, 0.08f);
-        transform.localScale = defaultScale;
+        
+        transform.localScale = squash.UpdateSquashEffect(0.08f);
     }
 
 
-    public void VisualHit()
-    {
-        defaultScale = new Vector3(1.2f, .8f, 1.2f);
-
-
-    }
+   
 
  
     public void takeDamage(float amount)
     {
         currenthealth -= amount;
         OnHealthUpdate?.Invoke(currenthealth, data.maxHealth);
-        VisualHit();
+        squash.VisualHit(1.2f,.9f,1.5f);
         if(currenthealth <= 0) OnDeath?.Invoke();
     }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class SpawnTurret : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SpawnTurret : MonoBehaviour
     Vector2 spawnPosition;
     [SerializeField] LayerMask turretLayer;
     [SerializeField] LayerMask SpawnTurretLayer;
+
+    
 
     private void OnEnable() => SpawnTurretUI.OnTurretSelected += SetSelected;
     private void OnDisable() => SpawnTurretUI.OnTurretSelected -= SetSelected;
@@ -56,6 +59,7 @@ public class SpawnTurret : MonoBehaviour
         {
             GameManager.Instance.RemoveGold(selectedData.Cost);
             SpawnPrefab(selectedData.turret, currentTarget.transform.position);
+
         }
         else Debug.LogWarning("vous n'avez pas assez de piece");
 
@@ -64,7 +68,10 @@ public class SpawnTurret : MonoBehaviour
     private void SpawnPrefab(GameObject turretGO,Vector3 position)
     {
         
-        Instantiate(turretGO, position, Quaternion.identity);
+      GameObject spawnTurret =  Instantiate(turretGO, position, Quaternion.identity);
+       
+        
+        
     }
 
     private void OnDrawGizmos()

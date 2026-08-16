@@ -16,11 +16,14 @@ public class TurretController : MonoBehaviour
     [SerializeField] private Bullet BulletPrefab;
     Vector2 direction;
     float timer;
-    TurretLeveler leveler;  
+    TurretLeveler leveler;
+    [SerializeField] private SquashEffect squashEffect;
 
     private void Awake()
     {
         runtimeData.Initialize(data);
+        squashEffect.Initialize(transform.localScale);
+        squashEffect.VisualHit(0f, 0f, 0f);
     }
 
     private void Start()
@@ -31,6 +34,7 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
+        transform.localScale = squashEffect.UpdateSquashEffect(0.08f);
         LookAtTarget();
         Weapon();
     }

@@ -77,7 +77,7 @@ public class EnemyWaveSpawner : MonoBehaviour
 
             SpawnEnemy(prefabToSpawn);
 
-            Debug.Log($"Spawn de l'ennemi {i + 1} sur {totalToSpawn}");
+          
             yield return new WaitForSeconds(wave.timeBetweenSpawn);
         }
        

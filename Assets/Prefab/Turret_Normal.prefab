@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: -3536495782285140778}
   - component: {fileID: 5119447041074961402}
   - component: {fileID: 3460596591683567544}
+  - component: {fileID: 8565462272698810013}
   m_Layer: 3
   m_Name: Turret_Normal
   m_TagString: Untagged
@@ -241,6 +242,7 @@ MonoBehaviour:
     m_Bits: 64
   firingPoint: {fileID: 6950814868697140046}
   BulletPrefab: {fileID: 7741578397388795936, guid: b6fb10f8346f83e45b95be9b0611c32d, type: 3}
+  squashEffect: {fileID: 8565462272698810013}
 --- !u!114 &-3536495782285140778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,3 +351,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8565462272698810013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630236011572860976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4a079c0ee546644afc2e2b7bed46b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashEffect

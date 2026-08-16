@@ -8,8 +8,9 @@ public class EndGameUI : MonoBehaviour
 
     private void Awake()
     {
-        WinPanel.SetActive(false);
-        LosePanel.SetActive(false);
+        
+      //  WinPanel?.SetActive(false);
+      //  LosePanel?.SetActive(false);
     }
 
     private void OnEnable()

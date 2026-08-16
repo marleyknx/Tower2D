@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 6114446162424067328}
   - component: {fileID: 5458883899013523136}
   - component: {fileID: 8409646476571647302}
+  - component: {fileID: 7734118474022723517}
   m_Layer: 6
   m_Name: Enemie_Normal 1
   m_TagString: Untagged
@@ -302,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   data: {fileID: 11400000, guid: a4978db1e821131498a2fa2652d907d9, type: 2}
+  squash: {fileID: 4207052329090403495, guid: 448445e41e421e34c8a3f8532c52848e, type: 3}
 --- !u!50 &6114446162424067328
 Rigidbody2D:
   serializedVersion: 5
@@ -389,3 +391,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   healthImage: {fileID: 4994828907139049992}
   LerpSpeed: 10
+--- !u!114 &7734118474022723517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485426225498180958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4a079c0ee546644afc2e2b7bed46b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SquashEffect
+  ScalingSpeed: {x: 0, y: 0, z: 0}

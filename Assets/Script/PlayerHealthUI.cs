@@ -12,7 +12,7 @@ public class PlayerHealthUI : MonoBehaviour
     float displayRatio = 1;
     float TargetRatio = 1;
 
-    float currentAlpha, maxHalpha,velocityAlpha;
+  float currentAlpha, maxHalpha,velocityAlpha;
   
 
 
@@ -35,7 +35,7 @@ public class PlayerHealthUI : MonoBehaviour
         displayRatio = Mathf.Lerp(displayRatio, TargetRatio, LerpSpeed * Time.deltaTime);
         healthImage.fillAmount = displayRatio;
 
-        currentAlpha = Mathf.SmoothDamp(currentAlpha, maxHalpha, ref velocityAlpha, 0.1f);
+        currentAlpha = Mathf.SmoothDamp(currentAlpha, maxHalpha, ref velocityAlpha, 0.5f);
         Color alpha = healthDamageImage.color;
         alpha.a = currentAlpha;
         healthDamageImage.color = alpha;
