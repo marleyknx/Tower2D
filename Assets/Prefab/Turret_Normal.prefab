@@ -260,17 +260,24 @@ MonoBehaviour:
   RequiredExp: 0
   Test: 0
   Leveler:
-  - upgrades: []
   - upgrades:
     - statType: 0
       amount: 1
-    - statType: 0
-      amount: 1
+      cost: 10
   - upgrades:
     - statType: 0
       amount: 1
+      cost: 40
+    - statType: 2
+      amount: 1
+      cost: 50
+  - upgrades:
+    - statType: 0
+      amount: 1
+      cost: 0
     - statType: 0
       amount: 2
+      cost: 0
   additionMultiplier: 300
   powerMultiplier: 2
   divisionMultiplier: 7

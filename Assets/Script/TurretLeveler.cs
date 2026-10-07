@@ -51,7 +51,7 @@ public class TurretLeveler : MonoBehaviour
     public bool isLevelReady { get; private set; }
     public event Action OnLevelReady, OnUpgrade;
     public int level;
-    int maxLevel;
+    int maxLevel = 4;
     public int MaxLevel => maxLevel;
     public float currentExp;
     public float RequiredExp;
