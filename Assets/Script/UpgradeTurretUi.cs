@@ -71,10 +71,10 @@ public class UpgradeTurretUi : MonoBehaviour
 
     public void OnChoiceClicked(int index)
     {
-        // TODO : demander l'achat à la tourelle courante
-        if(current != null)
-        {
-            current.TryBuyUpgrade(index);
-        }
+        if (current == null) return;
+
+        Debug.Log("A. bouton cliqué : " + index);
+        bool bought = current.TryBuyUpgrade(index);
+        if (bought) Show(null);
     }
 }

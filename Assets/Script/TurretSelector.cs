@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -26,27 +27,33 @@ public class TurretSelector : MonoBehaviour
 
     private void Update()
     {
-        if(isPlacing ) return;
         Mouse mouse = Mouse.current;
-        Vector3 worldPosition = cam.ScreenToWorldPoint(mouse.position.ReadValue());
-        if (OnTurretClicked == null) return;
-        worldPosition.z = -cam.transform.position.z;
-
         if (!mouse.rightButton.wasPressedThisFrame) return;
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        Debug.Log("1. clic reçu");
 
-        
+        if (isPlacing) { Debug.Log("STOP : isPlacing"); return; }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            PointerEventData data = new PointerEventData(EventSystem.current);
+            data.position = mouse.position.ReadValue();
 
-       
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(data, results);
 
+            foreach (RaycastResult r in results)
+                Debug.Log("UI sous la souris : " + r.gameObject.name);
+            return;
+        }
+
+        Vector3 worldPosition = cam.ScreenToWorldPoint(mouse.position.ReadValue());
         Collider2D coll = Physics2D.OverlapPoint(worldPosition, turretLayer);
-        if (coll != null )
+        Debug.Log("2. collider touché : " + (coll != null ? coll.name : "rien"));
+
+        if (coll != null && coll.TryGetComponent(out TurretLeveler leveler))
         {
-           if(coll.TryGetComponent(out TurretLeveler leveler)) OnTurretClicked(leveler);
+            Debug.Log("3. event envoyé");
+            OnTurretClicked?.Invoke(leveler);
         }
-        else
-        {
-            OnTurretClicked?.Invoke(null);   
-        }
+        else OnTurretClicked?.Invoke(null);
     }
 }

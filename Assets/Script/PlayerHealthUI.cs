@@ -13,8 +13,11 @@ public class PlayerHealthUI : MonoBehaviour
     float TargetRatio = 1;
 
   float currentAlpha, maxHalpha,velocityAlpha;
-  
 
+    public void Start()
+    {
+        healthDamageImage.gameObject.SetActive(false);
+    }
 
 
     private void OnEnable()
@@ -46,8 +49,11 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void UpdateHealthUi(float pCurrrent, float pMax)
     {
+       
         TargetRatio = pCurrrent / pMax;
         currentAlpha = .5f;
+       
+
 
     }
 }

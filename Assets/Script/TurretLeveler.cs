@@ -111,35 +111,39 @@ public class TurretLeveler : MonoBehaviour
     {
         // TODO, dans cet ordre, une opération par ligne :
         if (!isLevelReady) return false;
-        
-        
+
         List<StatUpgrade> choices = GetCurrentChoices();
       
+        Debug.Log("A.");
         if (choices == null) return false;                              
+        Debug.Log("B.");
         if (choiceIndex < 0 || choiceIndex >= choices.Count) return false;
+        Debug.Log("C.");
         
         StatUpgrade chosen = choices[choiceIndex];
         if(GameManager.Instance.gold < chosen.cost)
         {
             Debug.LogError("vous n'avez pas assez");
+        Debug.Log("D.");
             return false;
         }
         else
         {
+            level++;
             StatUpgradeUtility.ApplyUpgrade(chosen, runtimeData);
             GameManager.Instance.RemoveGold(chosen.cost);
-            level++;
             currentExp = Mathf.RoundToInt(currentExp - RequiredExp);
             RequiredExp = calculateRequiredXp(level + 1);
             isLevelReady = false;
             OnUpgrade?.Invoke();
             
         }
+        Debug.Log("E.");
         return false;
     }
 
-   
 
+   
    
     public void ResetLevel() => level = 0;
     public void ResetExperience() => currentExp = 0;

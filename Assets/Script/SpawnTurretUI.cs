@@ -44,8 +44,9 @@ public class SpawnTurretUI : MonoBehaviour
             OnTurretSelected?.Invoke(null);
             return;
         }
+       
 
-        CurrentSelectedCard = clicked;
+            CurrentSelectedCard = clicked;
         CurrentSelectedCard.SetHighlight(true);
         OnTurretSelected?.Invoke(clicked.data);
     }
