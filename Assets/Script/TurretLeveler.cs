@@ -16,10 +16,11 @@ public class TurretLeveler : MonoBehaviour
        
 
         public float amount;
+        public int cost;
 
         public static class StatUpgradeUtility
         {
-            public static void ApplyUpgrade(StatUpgrade upgrade,TurretRuntimeData data)
+            public static void ApplyUpgrade(StatUpgrade upgrade,TurretRuntimeData data )
             {
                 switch (upgrade.statType)
                 {
@@ -47,7 +48,11 @@ public class TurretLeveler : MonoBehaviour
         public List< StatUpgrade> upgrades;
     }
 
+    public bool isLevelReady { get; private set; }
+    public event Action OnLevelReady, OnUpgrade;
     public int level;
+    int maxLevel;
+    public int MaxLevel => maxLevel;
     public float currentExp;
     public float RequiredExp;
     public bool Test;
@@ -64,64 +69,87 @@ public class TurretLeveler : MonoBehaviour
     [Range(7f, 14f)]
     public float divisionMultiplier = 7;
 
-   
-   
+    int testChoice = -1;
+
+
 
     private void Start()
     {
         runtimeData = GetComponent<TurretController>().runtimeData;
-        RequiredExp = calculateRequiredXp();
+        RequiredExp = calculateRequiredXp(level + 1);
         Debug.Log($" runtime data {runtimeData.radius} ");
+        maxLevel = Leveler.Count -1;
+    }
+
+
+
+    
+
+    public void GainExpFlateRate(float xp)
+    {
+
+        if (isLevelReady) return;
+        currentExp += xp;
+       
+        if(currentExp >= RequiredExp)
+        {
+            isLevelReady = true;
+            OnLevelReady?.Invoke();
+        }
+
+        
+    }
+
+    public List<StatUpgrade> GetCurrentChoices()
+    {
+        if (level >= maxLevel) return null;
+        return Leveler[level + 1].upgrades;
+       
+    }
+
+    public bool TryBuyUpgrade(int choiceIndex)
+    {
+        // TODO, dans cet ordre, une opération par ligne :
+        if (!isLevelReady) return false;
+        
+        
+        List<StatUpgrade> choices = GetCurrentChoices();
+      
+        if (choices == null) return false;                              
+        if (choiceIndex < 0 || choiceIndex >= choices.Count) return false;
+        
+        StatUpgrade chosen = choices[choiceIndex];
+        if(GameManager.Instance.gold < chosen.cost)
+        {
+            Debug.LogError("vous n'avez pas assez");
+            return false;
+        }
+        else
+        {
+            StatUpgradeUtility.ApplyUpgrade(chosen, runtimeData);
+            GameManager.Instance.RemoveGold(chosen.cost);
+            level++;
+            currentExp = Mathf.RoundToInt(currentExp - RequiredExp);
+            RequiredExp = calculateRequiredXp(level + 1);
+            isLevelReady = false;
+            OnUpgrade?.Invoke();
+            
+        }
+        return false;
     }
 
    
 
-    private  void LevelUp()
-    {
-        
-        
-        
-      level++;
-      foreach(var upgrades in Leveler[level].upgrades)
-        StatUpgradeUtility.ApplyUpgrade(upgrades,runtimeData);
-        
-           
-      currentExp = Mathf.RoundToInt(currentExp - RequiredExp);
-      RequiredExp = calculateRequiredXp();
-        
-    }
-
-
-    private void Update()
-    {
-        if (level >= Leveler.Count -1)
-        {
-            ResetExperience();
-            return;
-        }
-           
-        if (currentExp >= RequiredExp) LevelUp();
-        
-        //test
-        if (Test)
-        {
-            LevelUp();
-            Test = false;
-        }
-
-        
-    }
-
-    public void GainExpFlateRate(float XPGained) => currentExp += XPGained;
+   
     public void ResetLevel() => level = 0;
     public void ResetExperience() => currentExp = 0;
 
-    int calculateRequiredXp()
+    int calculateRequiredXp(int targetLevel)
     {
         int solveForRequire = 0;
-        for (int levelCycle = 1; levelCycle <= level; levelCycle++)
+        for (int levelCycle = 1; levelCycle <= targetLevel; levelCycle++)
         {
-            solveForRequire += (int)Mathf.Floor(level + additionMultiplier * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));
+            solveForRequire += (int)Mathf.Floor(targetLevel + additionMultiplier * Mathf.Pow(powerMultiplier, levelCycle / divisionMultiplier));
         }
         return solveForRequire / 4;
     }

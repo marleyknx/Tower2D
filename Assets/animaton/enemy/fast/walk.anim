@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Warrior_Run_Purple
+  m_Name: walk
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -28,7 +28,7 @@ AnimationClip:
       value: {fileID: -8600065048725663906, guid: 20181a9aff07341728fa8dec79be0b68, type: 3}
     - time: 0.3
       value: {fileID: 3241423924572654580, guid: 20181a9aff07341728fa8dec79be0b68, type: 3}
-    - time: 0.4
+    - time: 0.41666666
       value: {fileID: -5828329696384875631, guid: 20181a9aff07341728fa8dec79be0b68, type: 3}
     - time: 0.5
       value: {fileID: 2022560608615539102, guid: 20181a9aff07341728fa8dec79be0b68, type: 3}
@@ -37,7 +37,7 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 10
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -65,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 5458883899013523136}
   - component: {fileID: 8409646476571647302}
   - component: {fileID: 4578157294665768808}
+  - component: {fileID: 2418295566933568778}
   m_Layer: 6
   m_Name: Enemie_Fast
   m_TagString: Untagged
@@ -403,4 +404,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4a079c0ee546644afc2e2b7bed46b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SquashEffect
-  ScalingSpeed: {x: 0, y: 0, z: 0}
+--- !u!95 &2418295566933568778
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485426225498180958}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12285b2ad229e465ca21363a5ff750b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
