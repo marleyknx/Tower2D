@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab8642e509f4ec4f889123b0da85768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurretLeveler
-  level: 1
+  level: 0
   currentExp: 0
   RequiredExp: 0
   Test: 0
@@ -264,14 +264,18 @@ MonoBehaviour:
   - upgrades:
     - statType: 1
       amount: 1
+      cost: 0
   - upgrades:
     - statType: 1
       amount: 1
+      cost: 0
   - upgrades:
     - statType: 1
       amount: 1
+      cost: 0
     - statType: 0
       amount: 1
+      cost: 0
   additionMultiplier: 300
   powerMultiplier: 2
   divisionMultiplier: 7

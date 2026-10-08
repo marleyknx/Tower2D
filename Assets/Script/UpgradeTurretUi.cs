@@ -49,12 +49,13 @@ public class UpgradeTurretUi : MonoBehaviour
         levelText.text = " Nv " + current.level;
         for (int i = 0; i < choiceButtons.Length; i++)
         {
-            if (choiceButtons.Length < 0 || i >= currentChoice.Count) choiceButtons[i].gameObject.SetActive(false);
+            if (currentChoice == null || i >= currentChoice.Count) choiceButtons[i].gameObject.SetActive(false);
             else
             {
                 TurretLeveler.StatUpgrade choice = currentChoice[i];
 
                 choiceButtons[i].gameObject.SetActive(true);
+                Debug.Log($"Refresh → tourelle {current.name}, niveau {current.level}, lit Leveler[{current.level + 1}], choix {i} : coût = {choice.cost}");
                 choiceTexts[i].text = $"{choice.statType} +{choice.amount} — {choice.cost}g";
                 choiceButtons[i].interactable = current.isLevelReady;
 
@@ -73,7 +74,6 @@ public class UpgradeTurretUi : MonoBehaviour
     {
         if (current == null) return;
 
-        Debug.Log("A. bouton cliqué : " + index);
         bool bought = current.TryBuyUpgrade(index);
         if (bought) Show(null);
     }

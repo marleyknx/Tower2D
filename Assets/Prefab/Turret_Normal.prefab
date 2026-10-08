@@ -255,22 +255,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab8642e509f4ec4f889123b0da85768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurretLeveler
-  level: 1
+  level: 0
   currentExp: 0
   RequiredExp: 0
   Test: 0
   Leveler:
+  - upgrades: []
   - upgrades:
     - statType: 0
       amount: 1
-      cost: 10
-  - upgrades:
-    - statType: 0
-      amount: 1
-      cost: 40
+      cost: 45
     - statType: 2
       amount: 1
-      cost: 50
+      cost: 57
   - upgrades:
     - statType: 0
       amount: 1
