@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 public class UpgradeTurretUi : MonoBehaviour
@@ -9,7 +10,7 @@ public class UpgradeTurretUi : MonoBehaviour
     [SerializeField] Slider xpBar;
     [SerializeField] Button[] choiceButtons;
     [SerializeField] Text[] choiceTexts;
-
+    [SerializeField] TurretSpotLight spotlight;
 
     TurretLeveler current;
 
@@ -20,7 +21,7 @@ public class UpgradeTurretUi : MonoBehaviour
 
     private void Show(TurretLeveler leveler)
     {
-
+        spotlight.Focus(leveler);
         if (current != null)
         {
 

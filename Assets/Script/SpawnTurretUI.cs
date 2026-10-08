@@ -24,12 +24,20 @@ public class SpawnTurretUI : MonoBehaviour
     {
         foreach (var card in TurretCards)
             card.OnCardClicked += HandleCardSelected;
+        SpawnTurret.OnTurretPlaced += Deselect;
     }
 
     private void OnDisable()
     {
         foreach (var card in TurretCards)
             card.OnCardClicked -= HandleCardSelected;
+        SpawnTurret.OnTurretPlaced -= Deselect;
+    }
+    private void Deselect()
+    {
+        CurrentSelectedCard?.SetHighlight(false);
+        CurrentSelectedCard = null;
+        OnTurretSelected?.Invoke(null);
     }
 
     private void HandleCardSelected(Card clicked)
@@ -40,8 +48,7 @@ public class SpawnTurretUI : MonoBehaviour
         // si on reclique la même → déselect
         if (CurrentSelectedCard == clicked)
         {
-            CurrentSelectedCard = null;
-            OnTurretSelected?.Invoke(null);
+            Deselect();
             return;
         }
        

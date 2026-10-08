@@ -2,7 +2,7 @@
 - Project name: Tower2D
 - Unity version: Unity 6000.3.15f1
 - Active game object:
-  - Name: UpgradePanel
+  - Name: Grid
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
