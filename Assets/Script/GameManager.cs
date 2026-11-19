@@ -1,5 +1,7 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameResult {Victory,Defeate}
 public class GameManager : MonoBehaviour
@@ -34,7 +36,26 @@ public class GameManager : MonoBehaviour
         OnPauseChanged?.Invoke(paused);
     }
     
-    
+    public void Retry()
+    {
+        SetPaused(false);
+        SceneManager.LoadScene(1);
+    }
+    public void MainMenu()
+    {
+        SetPaused(false);
+        SceneManager.LoadScene(0);
+    }
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        
+    }
+
 
     private void Awake()
     {
