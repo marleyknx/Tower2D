@@ -2,7 +2,7 @@
 - Project name: Tower2D
 - Unity version: Unity 6000.3.15f1
 - Active game object:
-  - Name: Grid
+  - Name: ConditionText
   - Tag: Untagged
-  - Layer: Default
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

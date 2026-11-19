@@ -57,7 +57,7 @@ public class EnemyWaveSpawner : MonoBehaviour
         } while (endless);
 
        
-        yield return new WaitUntil(() => activeEnemyCount <= 0); GameManager.Instance.InvokePlayerWin();
+        yield return new WaitUntil(() => activeEnemyCount <= 0); GameManager.Instance.EndGame(GameResult.Victory);
     }
 
     private IEnumerator SpawnWave(Wave wave)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -23,11 +24,12 @@ public class PlayerHealth : MonoBehaviour
         currenthealth -= amount;
         OnHealthUpdate?.Invoke(currenthealth, maxHealth);
 
-        if (currenthealth <= 0) OnDeath();
+        if (currenthealth <= 0) StartCoroutine( OnDeath());
     }
 
-    private void OnDeath()
+    private IEnumerator OnDeath()
     {
-        GameManager.Instance.InvokePlayerDeath();
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.EndGame(GameResult.Defeate);
     }
 }

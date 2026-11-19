@@ -1,39 +1,37 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndGameUI : MonoBehaviour
 {
-    [SerializeField] GameObject WinPanel, LosePanel;
+    [SerializeField] GameObject ConditionPanel;
+    [SerializeField] Text ConditionTxt;
     
 
 
-    private void Awake()
-    {
-        
-      //  WinPanel?.SetActive(false);
-      //  LosePanel?.SetActive(false);
-    }
+    private void Awake() => ConditionPanel?.SetActive(false);
 
-    private void OnEnable()
-    {
-        GameManager.Instance.OnDeath += OpenLosePanel;
-        GameManager.Instance.OnWin += OpenWinPanel;
-    }
 
+  
     private void OnDisable()
     {
-        GameManager.Instance.OnDeath -= OpenLosePanel;
-        GameManager.Instance.OnWin -= OpenWinPanel;
+        if(GameManager.Instance != null )
+        GameManager.Instance.OnGameEnded -= Show;
+    }
+    private void Start()
+    {
+        GameManager.Instance.OnGameEnded += Show;
+        
+
     }
 
-    void OpenWinPanel()
+    private void Show(GameResult result)
     {
+        ConditionPanel.SetActive(true);
+       ConditionTxt.text = result == GameResult.Victory ? "VICTORY" : "GAME OVER";
         
-       WinPanel.SetActive(true);
+
     }
 
-    void OpenLosePanel()
-    {
-        
-        LosePanel.SetActive(true);
-    }
+    
 }
